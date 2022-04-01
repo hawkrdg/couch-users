@@ -1,0 +1,19 @@
+{
+	"couchProxyEndpoint": "http://192.168.1.25:5984",
+	"userRoles": [
+		{"idx": 0, "role": "root"},
+		{"idx": 1, "role": "admin"},
+		{"idx": 2, "role": "super"},
+		{"idx": 3, "role": "manager"},
+		{"idx": 4, "role": "tech1"},
+		{"idx": 5, "role": "tech2"},
+		{"idx": 6, "role": "developer1"},
+		{"idx": 7, "role": "developer2"},
+		{"idx": 8, "role": "user"},
+		{"idx": 9, "role": "guest"},
+		{"idx": 10, "role": "meters_admin"},
+		{"idx": 11, "role": "meters_tech"},
+		{"idx": 12, "role": "meters_billing"},
+		{"idx": 13, "role": "meters_user"}
+	]
+}

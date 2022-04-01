@@ -1,0 +1,102 @@
+<div class="mainContent">
+  <edit-toolbar class="userEditToolbar" [editMode]="data.editMode" [disableAll]="data.disableAllEdits" (action)="handleEditControls($event)"></edit-toolbar>
+
+  <div class="loadingData" *ngIf="showDataLoading">
+		<h1>Loading Data...</h1>
+		<mat-spinner color="accent"diameter=200></mat-spinner>
+	</div>
+
+  <div class="userSelectPanel tableContainer">
+    <table #userList mat-table [dataSource]="data.users" class="dataTable">
+      <ng-container matColumnDef="userName">
+        <th mat-header-cell *matHeaderCellDef> Users </th>
+        <td mat-cell *matCellDef="let curUser"> {{curUser.name}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="['userName']"></tr>
+      <tr mat-row [ngClass]="{'rowHL': idx === data.currentUserIdx}" (click)="onUserChange(myrow, idx)" *matRowDef="let myrow; let idx = index; columns: ['userName'];"></tr>
+    </table>
+    <div class="tableOverlay" *ngIf="data.editMode"></div>
+  </div>
+
+  <div class="userRolesPanel">
+    <table #userRolesList mat-table [dataSource]="currentRolesBuf" class="dataTable">
+      <ng-container matColumnDef="userRoles">
+        <th mat-header-cell *matHeaderCellDef> User Roles </th>
+        <td mat-cell matTooltip="Remove this role..." *matCellDef="let curRole"> {{curRole.role}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="['userRoles']; sticky: true"></tr>
+      <tr mat-row (click)="removeUserRole(idx)" *matRowDef="let myrow; let idx = index; columns: ['userRoles'];"></tr>
+    </table>
+    <div class="tableOverlay" *ngIf="!data.editMode"></div>
+  </div>
+
+  <div class="availableRolesPanel">
+    <table #availableRowsList mat-table [dataSource]="availableRolesBuf" class="dataTable">
+      <ng-container matColumnDef="userRoles">
+        <th mat-header-cell *matHeaderCellDef> Available Roles </th>
+        <td mat-cell matTooltip="Add this role..." *matCellDef="let curRole"> {{curRole.role}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="['userRoles']; sticky: true"></tr>
+      <tr mat-row (click)="addUserRole(idx)" *matRowDef="let myrow; let idx = index; columns: ['userRoles'];"></tr>
+    </table>
+    <div class="tableOverlay" *ngIf="!data.editMode"></div>
+  </div>
+
+  <div class="detailsPanel">
+    <div class="recordsContainer">
+      <mat-form-field class="txtName" color="accent" appearance="outline" floatLabel="always">
+        <mat-label>Login Name</mat-label>
+        <input matInput [disabled]="!data.editMode || data.addOrEdit === 'edit'" [(ngModel)]="data.currentUserSubmitBuf.name">
+      </mat-form-field>
+
+      <mat-form-field class="txtName" color="accent" appearance="outline" floatLabel="always">
+        <mat-label>User Full Name</mat-label>
+        <input matInput [disabled]="!data.editMode" [(ngModel)]="data.currentUserSubmitBuf.fullname">
+      </mat-form-field>
+
+      <mat-form-field class="txtName" color="accent" appearance="outline" floatLabel="always">
+        <mat-label>{{data.addOrEdit === 'edit' ? 'Change Password' : 'Password'}}</mat-label>
+        <input matInput [disabled]="!data.editMode" [(ngModel)]="data.currentUserSubmitBuf.password">
+      </mat-form-field>
+    </div>
+    <div class="recordsContainer">
+      <mat-form-field class="txtName" color="accent" appearance="outline" floatLabel="always">
+        <mat-label>User Email</mat-label>
+        <input matInput [disabled]="!data.editMode" [(ngModel)]="data.currentUserSubmitBuf.email">
+      </mat-form-field>
+
+      <mat-form-field class="txtName" color="accent" appearance="outline" floatLabel="always">
+        <mat-label>User Phone #</mat-label>
+        <input matInput mask="(000) 000-0000" [disabled]="!data.editMode" [(ngModel)]="data.currentUserSubmitBuf.phone">
+      </mat-form-field>
+    </div>
+    <div class="notesContainer">
+      <mat-form-field class="txtNotes" color="accent" appearance="outline" floatLabel="always">
+        <mat-label>Notes</mat-label>
+        <textarea matInput [disabled]="!data.editMode" [(ngModel)]="data.currentUserSubmitBuf.notes"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="neededFields" *ngIf="showNeededFields">
+      <h1>Must Have:</h1>
+      <h2>Login Name, {{data.addOrEdit === 'add' ? ' Password, ' : ''}}at least 1 role</h2>
+      <button type="button" mat-raised-button color="accent" (click)="showNeededFields = false">Got It...!</button>
+    </div>
+
+    <div class="changePW" *ngIf="showChangePW">
+      <h1>Change Password...?</h1>
+      <button type="button" mat-raised-button color="accent" (click)="showChangePW = false; changePW = true">Change It</button>
+      <button type="button" mat-raised-button color="accent" (click)="showChangePW = false; changePW = false">No</button>
+    </div>
+
+    <div class="errorMsg" *ngIf="showErrorMsg">
+      <h1>ERROR...!</h1>
+      <h2>{{errorMsg}}</h2>
+      <button type="button" mat-raised-button color="accent" (click)="showErrorMsg = false">OK</button>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,35 @@
+.editBarContainer {
+	width: 260px;
+	margin: 0 15px;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	animation: fade 1s
+}
+.editBarContainer	.buttonSpacer {
+		flex-grow: 0.25;
+}
+.editBarContainer	button {
+		width: 30px !important;
+}
+
+.editBarVerifyContainer {
+	width: 260px;
+	margin: 0 15px;
+	display: flex;
+	align-items: center;
+	text-align: center;
+	font-size: 0.8em;
+}
+.editBarVerifyContainer	button {
+		margin: 0 10px;
+		width: 50px;
+		padding: 0;
+		z-index: 100;
+}
+
+@media print {
+	.editBarContainer {
+		display: none;
+	}
+}

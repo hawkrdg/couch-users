@@ -1,0 +1,39 @@
+<div class="editBarContainer" *ngIf="!verify">
+	<button mat-icon-button color="accent" matTooltip="Add New..."
+					[disabled]="editMode || disableAll" (click)="doAction('new')">
+		<i class="material-icons">add</i>
+	</button>
+	<button mat-icon-button color="accent" matTooltip="Edit..."
+	 				[disabled]="editMode || disableAll" (click)="doAction('edit')">
+		<i class="material-icons">edit</i>
+	</button>
+	<button mat-icon-button color="accent" matTooltip="Delete..."
+	 				[disabled]="editMode || disableAll" (click)="doAction('delete')">
+		<i class="material-icons">delete</i>
+	</button>
+
+	<div class="buttonSpacer"></div>
+
+	<button mat-icon-button color="accent" matTooltip="Save..."
+	 				[disabled]="!editMode || disableAll" (click)="doAction('save')">
+		<i class="material-icons">check</i>
+	</button>
+	<button mat-icon-button color="accent" matTooltip="Cancel..."
+	 				[disabled]="!editMode || disableAll" (click)="doAction('cancel')">
+		<i class="material-icons">close</i>
+	</button>
+
+	<div class="buttonSpacer"></div>
+
+	<button mat-icon-button color="accent" matTooltip="Reload Data..."
+					[disabled]="editMode || disableAll" (click)="doAction('reload')">
+		<i class="material-icons">replay</i>
+	</button>
+</div>
+
+
+<div class="editBarVerifyContainer" *ngIf="verify">
+	<span class="mat-heading1">Really...?</span>
+	<button mat-raised-button color="accent" (click)="confirmDelete('yes')">Yes</button>
+	<button mat-raised-button color="accent" (click)="confirmDelete('no')">No</button>
+</div>

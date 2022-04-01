@@ -1,0 +1,101 @@
+@use "./material/themes/teal-dark.scss" as theme;
+// @use "./material/themes/teal-light.scss" as theme;
+
+//-- banner with controls...
+//
+.mat-toolbar {
+	height: auto !important;
+	min-height: 95px;
+	padding: 15px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+}
+
+//-- data progress spinner...
+//
+.loadingData {
+	text-align: center;
+	padding-top: 100px;
+}
+.loadingData h1 {
+	margin-bottom: 80px;
+}
+.mat-spinner {
+	margin: 0 auto;
+}
+
+//-- login
+//
+.login {
+	border: 3px solid white;
+	// background-color: white;
+	color: theme.$color-accent;
+	height: 300px;
+	width: 500px;
+	margin: 80px auto;
+	padding-top: 25px;
+	text-align: center;
+}
+.loginFields {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+.loginFields .mat-form-field {
+	margin: 0 10px;
+}
+.loginButtons {
+	margin-top: 10px;
+	display: flex;
+	justify-content: space-around;
+}
+.loginError {
+	margin-top: 20px;
+	text-align: center;
+	font-size: 1.5em;
+	color: theme.$color-warn;
+}
+
+//-- controls div...
+//
+.controls {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+.data-filter {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	font-size: .8em;
+	padding-top: 5px;
+	animation: fade 1s;
+}
+.property-toggle, .meter-type-toggle {
+	margin: 0 15px 0 5px
+}
+.sel-property, .sel-meter-type {
+	height: 60px;
+	margin: 0 5px;
+}
+.sel-property, .sel-meter-type {
+	margin: 0 5px;
+}
+.sel-property {
+	width: 180px;
+}
+.sel-meter-type {
+	width: 120px;
+}
+
+.data-filter button, .data-tb button {
+	margin: 0 3px;
+}
+
+.mat-tab {
+	background-color: currentColor;
+}

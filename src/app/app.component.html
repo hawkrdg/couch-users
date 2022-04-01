@@ -1,0 +1,87 @@
+<mat-sidenav-container class="wrapper mat-typography">
+
+	<!-- edit & filter controls...
+	-->
+	<mat-toolbar color="primary" [ngClass]="{'blur': !data.isLoggedIn || !data.isDataLoaded}">
+    <h2>{{data.banner}}</h2>
+    <div class="controls">
+			<button mat-icon-button matTooltip="Login options..." color="accent" *ngIf="data.isLoggedIn" [matMenuTriggerFor]="loginMenu">
+				<mat-icon>person</mat-icon>
+			</button>
+			<mat-menu #loginMenu="matMenu">
+			  <button mat-menu-item (click)="processLogin('userLogout')">
+			    <mat-icon>logout</mat-icon>
+			    <span>Logout {{data.userLogin}}</span>
+			  </button>
+			  <button mat-menu-item (click)="data.showChangePW = true">
+			    <mat-icon>edit</mat-icon>
+			    <span>Change password</span>
+			  </button>
+			</mat-menu>
+		</div>
+	</mat-toolbar>
+
+	<!-- loading data...
+	-->
+	<div class="loadingData" *ngIf="data.showDataLoading">
+		<h1>Loading Data...</h1>
+		<mat-spinner color="accent"diameter=200></mat-spinner>
+	</div>
+
+	<!-- login...
+	-->
+	<div class="login" *ngIf="data.showLogin" (keyup.enter)="processLogin(!data.isLoggedIn ? 'login' : 'logout')">
+		<h1>{{data.isLoggedIn ? 'Logout...?' : 'Please Login...'}}</h1>
+		<div class="loginFields">
+			<mat-form-field  class="txtName" color="accent" appearance="outline" floatLabel="always">
+	      <mat-label>User name...</mat-label>
+	      <input #loginName matInput [disabled]="data.isLoggedIn" [(ngModel)]="data.userLogin" cdkFocusInitial>
+	    </mat-form-field>
+			<mat-form-field  class="txtName" color="accent" appearance="outline" floatLabel="always">
+	      <mat-label>Password...</mat-label>
+	      <input matInput [disabled]="data.isLoggedIn" [type]="showPassword ? 'text' : 'password'" [(ngModel)]="data.userPassword">
+	    </mat-form-field>
+			<button mat-icon-button color="accent" [disabled]="data.isLoggedIn && loginError" (click)="showPassword = !showPassword">
+				<mat-icon *ngIf="!showPassword" matTooltip="Show Password">visibility</mat-icon>
+				<mat-icon *ngIf="showPassword" matTooltip="Hide Password">do_not_disturb_on</mat-icon>
+			</button>
+		</div>
+		<div class="loginButtons">
+			<button #loginBtn mat-raised-button color="accent" (click)="processLogin('login')" *ngIf="!data.isLoggedIn">Login</button>
+			<button #logoutBtn mat-raised-button color="accent" (click)="processLogin('logout')" *ngIf="data.isLoggedIn">Logout</button>
+	  	<button mat-raised-button color="accent" (click)="processLogin('cancel')" *ngIf="data.isLoggedIn && loginError === ''">Cancel</button>
+		</div>
+		<div class="loginError">
+			{{loginError}}
+		</div>
+	</div>
+
+	<!-- change password...
+	-->
+	<div class="login" *ngIf="data.showChangePW" (keyup.enter)="processLogin('changePassword')">
+		<h1>{{data.isLoggedIn ? 'Logout...?' : 'Please Login...'}}</h1>
+		<div class="loginFields">
+			<mat-form-field  class="txtName" color="accent" appearance="outline" floatLabel="always">
+	      <mat-label>Old password...</mat-label>
+	      <input #oldPW matInput [type]="showPassword ? 'text' : 'password'" [(ngModel)]="data.oldPW" cdkFocusInitial>
+	    </mat-form-field>
+			<mat-form-field  class="txtName" color="accent" appearance="outline" floatLabel="always">
+	      <mat-label>New password...</mat-label>
+	      <input matInput [type]="showPassword ? 'text' : 'password'" [(ngModel)]="data.newPW">
+	    </mat-form-field>
+			<button mat-icon-button color="accent" matTooltip="Show password..." (click)="showPassword = !showPassword">
+				<mat-icon>visibility</mat-icon>
+			</button>
+		</div>
+		<div class="loginButtons">
+			<button #logoutBtn mat-raised-button color="accent" (click)="processLogin('changePW')" *ngIf="data.isLoggedIn">Change It</button>
+	  	<button mat-raised-button color="accent" (click)="processLogin('cancel')">Cancel</button>
+		</div>
+		<div class="loginError">
+			{{loginError}}
+		</div>
+	</div>
+
+	<app-users *ngIf="!data.showLogin && !data.showDataLoading"></app-users>
+
+</mat-sidenav-container>

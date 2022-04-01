@@ -1,0 +1,149 @@
+@use "../material/themes/teal-dark.scss" as theme;
+// @use "../material/themes/teal-light.scss" as theme;
+
+
+.mainContent {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  // text-align: center;
+  padding: 50px 15px 0;
+}
+
+.userEditToolbar {
+  position: absolute;
+  top: -65px;
+  right: 50px;
+}
+.loadingData {
+  position: absolute;
+  top: 120px;
+  left: calc(50vw - 140px);
+  padding: 20px 40px;
+  text-align: center;
+  background-color: rgba(150, 150, 150, 0.3);
+  border: 1px solid;
+  z-index: 500;
+}
+.loadingData h1 {
+	margin-bottom: 80px;
+}
+.mat-spinner {
+	margin: 0 auto;
+}
+
+.userSelectPanel {
+  width: 200px;
+  height: 540px;
+  position: relative;
+}
+.userRolesPanel {
+  width: 200px;
+  height: 540px;
+  position: relative;
+}
+.availableRolesPanel {
+  width: 200px;
+  height: 540px;
+  position: relative;
+}
+.detailsPanel {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.neededFields, .changePW, .errorMsg {
+  position: absolute;
+  top: 120px;
+  left: calc(50vw - 140px);
+  padding: 20px 40px;
+  text-align: center;
+  background-color: rgba(90, 90, 90, 0.8);
+  z-index: 500;
+}
+.changePW button {
+  margin: 15px;
+}
+
+.dataTable {
+  display: inline-block;
+  width: 200px;
+  height: 540px;
+  overflow: auto;
+}
+.tableOverlay {
+  position: absolute;
+  width: 200px;
+  height: 540px;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(150, 150, 150, 0.3);
+  z-index: 100;
+}
+.dataTable .mat-header-cell {
+  font-size: 1.5em;
+  color: theme.$color-accent;
+}
+.dataTable .mat-cell:hover {
+  color: theme.$color-accent;
+}
+.dataTable .mat-cell:focus {
+  color: theme.$color-warn;
+}
+.userRolesPanel .mat-cell:hover {
+  cursor: ew-resize;
+}
+.availableRolesPanel .mat-cell:hover {
+  cursor: ew-resize;
+}
+
+table {
+  background-color: #303030 !important;
+  border-collapse: collapse;
+  border: 1px solid;
+}
+.rowHL {
+  color: theme.$color-accent;
+}
+.mat-cell {
+  color: inherit;
+}
+
+//-- shared data entry styles...
+//
+.recordsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.notesContainer {
+	padding: 0;
+	text-align: center;
+}
+.notesContainer .mat-form-field-infix {
+	padding-top: 0;
+}
+.notesContainer .mat-form-field-outline {
+	height: 100px;
+}
+
+.txtName {
+	margin: 0 10px;
+	width: 200px;
+}
+
+.txtNotes {
+	width: calc(94vw - 700px);
+  min-width: 420px;
+	height: 340px !important;
+}
+.txtNotes textarea {
+	// width: 800px;
+	height: 310px;
+	resize: none !important;
+	overflow-y: auto;
+}

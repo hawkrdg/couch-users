@@ -4,6 +4,11 @@
 
 This project was needed to manage CouchDB users where CouchDB is proxied locally. Running Fauxton in a subroute has been problematic and who wants to write JSON files for a bunch of users. Only email, phone, & notes fields have been added, but feel free to edit users.component.html & users.component.ts for more functionality
 
+<p align="center">
+  <img src="/src/assets/images/screenshot.png" width="600" title="app screenshot...">
+</p>
+
+
 USAGE:
 
   clone the repo somewhere, create a new Angular application and then just copy the src into it.
